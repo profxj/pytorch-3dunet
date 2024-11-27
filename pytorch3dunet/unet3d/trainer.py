@@ -15,6 +15,8 @@ from . import utils
 
 logger = get_logger('UNetTrainer')
 
+from IPython import embed
+
 
 def create_trainer(config):
     # Create the model
@@ -280,6 +282,7 @@ class UNetTrainer:
 
             self._log_stats('val', val_losses.avg, val_scores.avg)
             logger.info(f'Validation finished. Loss: {val_losses.avg}. Evaluation score: {val_scores.avg}')
+            #embed(header='validate 285')
             return val_scores.avg
 
     def _split_training_batch(self, t):
