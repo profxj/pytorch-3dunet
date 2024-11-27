@@ -93,6 +93,7 @@ class SliceBuilder:
             [(slice, slice, slice), ...] if len(shape) == 3
         """
         slices = []
+        import pdb; pdb.set_trace()
         if dataset.ndim == 4:
             in_channels, i_z, i_y, i_x = dataset.shape
         else:

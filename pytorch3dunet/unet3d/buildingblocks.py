@@ -52,7 +52,7 @@ def create_conv(in_channels, out_channels, kernel_size, order, num_groups, paddi
                 conv = nn.Conv2d(in_channels, out_channels, kernel_size, padding=padding, bias=bias)
 
             modules.append(('conv', conv))
-        elif char == 'g':
+        elif char == 'g':  #  Group Normalization
             is_before_conv = i < order.index('c')
             if is_before_conv:
                 num_channels = in_channels

@@ -165,13 +165,17 @@ class AbstractHDF5Dataset(ConfigDataset):
         def _volume_shape(volume):
             if volume.ndim == 3:
                 return volume.shape
-            return volume.shape[1:]
+            elif volume.ndim == 4:
+                return volume.shape[1:]
+            elif volume.ndim == 5:
+                return volume.shape[2:]
 
         with h5py.File(self.file_path, 'r') as f:
             raw = f[self.raw_internal_path]
             label = f[self.label_internal_path]
-            assert raw.ndim in [3, 4], 'Raw dataset must be 3D (DxHxW) or 4D (CxDxHxW)'
-            assert label.ndim in [3, 4], 'Label dataset must be 3D (DxHxW) or 4D (CxDxHxW)'
+            assert raw.ndim in [3, 4, 5], 'Raw dataset must be 3D (DxHxW) or 4D (CxDxHxW)'
+            assert label.ndim in [3, 4, 5], 'Label dataset must be 3D (DxHxW) or 4D (CxDxHxW)'
+            #import pdb; pdb.set_trace()
             assert _volume_shape(raw) == _volume_shape(label), 'Raw and labels have to be of the same size'
             if self.weight_internal_path is not None:
                 weight_map = f[self.weight_internal_path]
