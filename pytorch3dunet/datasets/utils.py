@@ -166,6 +166,7 @@ class FilterSliceBuilder(SliceBuilder):
 
 def _loader_classes(class_name):
     modules = [
+        'pytorch3dunet.datasets.new_hdf5',
         'pytorch3dunet.datasets.hdf5',
         'pytorch3dunet.datasets.dsb',
         'pytorch3dunet.datasets.utils'
