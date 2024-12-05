@@ -61,6 +61,9 @@ class XHDF5Dataset(ConfigDataset):
         else:
             label_transformed = self.label_transform(self.label[index])
 
+            # JXP Scaling hack
+            import pdb; pdb.set_trace()
+
             return raw_transformed, label_transformed
 
     @classmethod
