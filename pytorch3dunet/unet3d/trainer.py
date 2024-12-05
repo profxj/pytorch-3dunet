@@ -314,11 +314,20 @@ class UNetTrainer:
             # forward pass
             output = self.model(input)
 
+        # compute the loss on a subset of the data
+        embed(header='318 of trainer.py')
+        new_output = output.copy()
+        new_target = target.copy()
+
+        no_calc = (output < 0.1) & (target < 0.1)
+        new_output[no_calc] = 0.
+        new_target[no_calc] = 0.
+
         # compute the loss
         if weight is None:
-            loss = self.loss_criterion(output, target)
+            loss = self.loss_criterion(new_output, new_target)
         else:
-            loss = self.loss_criterion(output, target, weight)
+            loss = self.loss_criterion(new_output, new_target, weight)
 
         return output, loss
 
