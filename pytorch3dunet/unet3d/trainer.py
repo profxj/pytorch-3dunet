@@ -314,9 +314,9 @@ class UNetTrainer:
             # forward pass
             output = self.model(input)
 
+        # JXP hacking
         # compute the loss on a subset of the data
-        embed(header='318 of trainer.py')
-        new_output = output.copy()
+        new_output = output.clone()
         new_target = target.copy()
 
         no_calc = (output < 0.1) & (target < 0.1)
