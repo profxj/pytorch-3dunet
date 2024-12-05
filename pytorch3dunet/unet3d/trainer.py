@@ -317,7 +317,7 @@ class UNetTrainer:
         # JXP hacking
         # compute the loss on a subset of the data
         new_output = output.clone()
-        new_target = target.copy()
+        new_target = target.clone()
 
         no_calc = (output < 0.1) & (target < 0.1)
         new_output[no_calc] = 0.
