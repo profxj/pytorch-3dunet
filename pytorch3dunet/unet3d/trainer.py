@@ -177,8 +177,6 @@ class UNetTrainer:
 
             input, target, weight = self._split_training_batch(t)
 
-            embed(header='trainer 179')
-
             output, loss = self._forward_pass(input, target, weight)
 
             train_losses.update(loss.item(), self._batch_size(input))
