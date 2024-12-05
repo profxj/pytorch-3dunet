@@ -61,6 +61,9 @@ class XHDF5Dataset(ConfigDataset):
         else:
             label_transformed = self.label_transform(self.label[index])
 
+            # Hack me
+            label_transformed *= 1e13
+
             return raw_transformed, label_transformed
 
     @classmethod
