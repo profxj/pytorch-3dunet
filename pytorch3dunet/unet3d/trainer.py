@@ -176,6 +176,7 @@ class UNetTrainer:
                         f'Epoch [{self.num_epochs}/{self.max_num_epochs - 1}]')
 
             input, target, weight = self._split_training_batch(t)
+            embed(header='validate 179')
 
             output, loss = self._forward_pass(input, target, weight)
 
